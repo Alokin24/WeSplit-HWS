@@ -24,7 +24,7 @@ struct ContentView: View {
         Double(possibleNumberOfPeople[numberOfPeopleIndex])
     }
     
-    var tipSelection: Double {
+    var tipSelected: Double {
         Double(tipPercentages[tipPercentage])
     }
     
@@ -33,11 +33,11 @@ struct ContentView: View {
     }
     
     var totalPerPerson: Double {
-        checkPrice * (1 + tipSelection / 100) / peopleCount
+        checkPrice * (1 + tipSelected / 100) / peopleCount
     }
     
     var totalAmount: Double {
-        checkPrice * (1 + tipSelection / 100)
+        checkPrice * (1 + tipSelected / 100)
     }
     
     var body: some View {
@@ -70,6 +70,7 @@ struct ContentView: View {
                 
                 Section(header: Text("Total amount")) {
                     Text(String(format: "$%.2f", totalAmount))
+                        .background((tipSelected == 0) ? Color.red :  Color.clear)
                 }
             }
             .navigationTitle("We Split")
